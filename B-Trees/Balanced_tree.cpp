@@ -17,3 +17,25 @@ public:
         return dfsHeight(root) != -1;
     }
 };
+//one more kind of solution using pairs
+class Solution {
+public:
+    pair<int, bool> helper(TreeNode* root)
+    {
+        if(!root)
+            return {0, true};
+        
+        pair<int, bool> left = helper(root->left);
+        pair<int, bool> right = helper(root->right);
+        
+        if(left.second && right.second && abs(left.first - right.first) <= 1)
+            return {max(left.first,right.first)+1, true};
+        
+        return {max(left.first,right.first)+1, false};
+    }
+    
+    bool isBalanced(TreeNode* root)
+    {
+        return helper(root).second;
+    }
+};
