@@ -1,3 +1,65 @@
+class Solution {
+public:
+    
+    bool isLeaf(TreeNode* node){
+        return !node->left && !node->right;
+    }
+
+    void addLeftBoundary(TreeNode* node,vector<int>& result){
+        TreeNode* curr = node->left;
+
+        while(curr){
+            if(!isLeaf(curr)) result.push_back(curr->val);
+
+            if(curr->left) curr = curr->left;
+            else curr = curr->right;
+        }
+    }
+
+    void addLeaves(TreeNode* node,vector<int>& result){
+        if(!node) return;
+        if(isLeaf(node)){
+            result.push_back(node->val); 
+            return;
+        }
+
+        addLeaves(node->left,result);
+        addLeaves(node->right,result);
+    }
+
+    void addRightBoundary(TreeNode* node, vector<int>& result){
+        TreeNode* curr = node->right;
+
+        vector<int> temp;
+        while(curr){
+            if(!isLeaf(curr)) temp.push_back(curr->val);
+
+            if(curr->right) curr = curr->right;
+            else curr = curr->left;
+        }
+        for(int i = temp.size()-1;i>=0;--i){
+            result.push_back(temp[i]);
+        }
+    }
+    vector<int> boundaryOfBinaryTree(TreeNode *root) {
+        vector<int> result;
+        if(!root) return result;
+
+        if(!isLeaf(root)) result.push_back(root->val);
+
+        //Full Left Traversal 
+        addLeftBoundary(root,result);
+        //then Leaves Traversal
+        addLeaves(root,result);
+        //then finally Right Traversal
+        addRightBoundary(root,result);
+
+        return result;
+    }
+};
+
+
+//rememeber...
 bool isLeaf(node * root) {
   return !root -> left && !root -> right;
 }
