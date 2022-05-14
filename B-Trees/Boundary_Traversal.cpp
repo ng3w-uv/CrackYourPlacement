@@ -1,3 +1,46 @@
+//Recursive Mine
+class Solution {
+public:
+    
+    bool isLeaf(TreeNode* node){
+        return !node->left && !node->right;
+    }
+
+    void addLeftBoundary(TreeNode* curr,vector<int>& result){
+        if(!curr) return;
+        if(!isLeaf(curr)) result.push_back(curr->val);
+        addLeftBoundary(curr->left,result);
+        if(!curr->left) addLeftBoundary(curr->right,result);
+    }
+
+    void addLeaves(TreeNode* node,vector<int>& result){
+        if(!node) return;
+        if(isLeaf(node)) {
+            result.push_back(node->val); 
+            return;
+        }
+        addLeaves(node->left,result);
+        addLeaves(node->right,result);
+    }
+
+    void addRightBoundary(TreeNode* node, vector<int>& result){
+        if(!node) return;
+        addRightBoundary(node->right,result);
+        if(!node->right) addRightBoundary(node->left,result);
+        if(!isLeaf(node)) result.push_back(node->val);
+    }
+    vector<int> boundaryOfBinaryTree(TreeNode *root) {
+        vector<int> result;
+        if(!root) return result;
+        if(!isLeaf(root)) result.push_back(root->val);
+        addLeftBoundary(root->left,result);
+        addLeaves(root,result);
+        addRightBoundary(root->right,result);
+        return result;
+    }
+};
+
+//Iterative Mine
 class Solution {
 public:
     
