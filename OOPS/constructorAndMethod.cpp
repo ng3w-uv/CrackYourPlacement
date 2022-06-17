@@ -69,8 +69,51 @@ int main() {
     channel_2.publishedVideoTitles.push_back(Video("Learn how to Clean Code","3 hrs","New Baba"));
     channel_2.publishedVideoTitles.push_back(Video("Learn Git/Github","1 hrs","N Baba"));
     
+    channel_1.aboutMe();
     channel_1.getInfo();
+    channel_2.aboutMe();
     channel_2.getInfo();
     
 	return 0;
 }
+
+/* OUTPUT : 
+
+ Hey! I am Ng3w! Subscribe to my youtube Channel! 
+**********************************
+Channel Name : Ng3w
+Channel Owner Name : UV
+Subscriber count : 0
+-------------1---------------
+Video Name : Learn Python
+Video Length : 1 hr
+Video Author : Random Baba
+----------------------------
+-------------2---------------
+Video Name : Learn C++
+Video Length : 2 hrs
+Video Author : Ng3w baba
+----------------------------
+-------------3---------------
+Video Name : Learn C#
+Video Length : 2 hrs
+Video Author : Ng3w baba
+----------------------------
+**********************************
+ Hey! I am Monkey Baba! Subscribe to my youtube Channel! 
+**********************************
+Channel Name : Monkey Baba
+Channel Owner Name : Ng3w
+Subscriber count : 0
+-------------1---------------
+Video Name : Learn how to Clean Code
+Video Length : 3 hrs
+Video Author : New Baba
+----------------------------
+-------------2---------------
+Video Name : Learn Git/Github
+Video Length : 1 hrs
+Video Author : N Baba
+----------------------------
+**********************************
+*/
