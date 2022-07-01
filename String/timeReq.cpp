@@ -15,6 +15,11 @@ public:
                 int current = it->second;
                 ans += abs(current - pre);
                 pre = current;
+		/*Can even use this
+		int current = map[word[i]];
+            	ans += abs(current - pre);
+            	pre = current;
+		*/
             }
         }
         return ans;
